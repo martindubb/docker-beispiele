@@ -1,0 +1,32 @@
+# Docker Image bauen (in aktuellem Verzeichnis)
+docker build  .
+docker build -t test123 .
+
+# Docker Images auflisten
+docker images
+
+# Laufende Docker Container auflisten
+docker ps -q
+
+# Alle laufenden Container stoppen
+docker kill $(docker ps -q)
+
+# Alle Container entfernen
+docker rm $(docker ps -qa)
+
+# Commands in laufenden Container ausführen
+docker exec -it <CONTAINER_ID> <COMMAND>
+docker exec -it a1b2c3 ls -l
+docker exec -it a1b2c3 sh
+
+# Bind Mount erstellen (mounte lokalen Ordner in einen Container)
+docker run -d --mount type=bind,src=./my_folder,dst=/my_folder test123
+
+# Docker Volume erstellen
+docker volume create my_volume
+
+# Docker Volumes auflisgten
+docker volume ls
+
+# Volume Mount erstellen (mounte docker volume in einen Container)
+docker run -d --mount type=volume,src=my_volume,dst=/my_vol test123
