@@ -1,0 +1,25 @@
+# Console output eines Containers anschauen (und folgen)
+docker logs <CONTAINER_ID>
+docker logs -f <CONTAINER_ID> 
+
+# Details eines Containers ausgaben lassen
+docker inspect <CONTAINER_ID> 
+
+# Netzwerke auflisten
+docker network ls
+
+# Netzwerk erstellen
+docker network create my_network
+
+# Container in einem bestimmten Netzwerk starten
+docker run  -it --rm --network my_network busybox sh
+
+# Container mit mehreren Netzwerken starten:
+# Container erstellen und einem Netzwerk hinzufügen
+docker create -it --rm --network my_network busybox sh
+docker network connect <NETZWERK_NAME> <CONTAINER_ID>
+docker container start <CONTAINER_ID>
+
+# Kopieren von Dateien/Ordnern von/zu Containern
+docker cp <CONTAINER_ID>:/app/sb/restaurants.sqlite db/restaurants.sqlite
+docker cp app.js <CONTAINER_ID>:/app.js
